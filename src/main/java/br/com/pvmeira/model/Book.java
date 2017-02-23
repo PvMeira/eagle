@@ -2,6 +2,7 @@ package br.com.pvmeira.model;
 
 import org.springframework.data.annotation.Id;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,18 +17,23 @@ public class Book implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name", length = 300)
     private String name;
 
+    @Column(name = "author", length = 300)
     private String author;
 
+    @Column(name = "name", length = 600)
     private String observation;
 
+    @Column(name = "pages")
     private int pages;
 
+    @Column(name = "year")
     private int year;
 
     private Blob picture;
