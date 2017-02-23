@@ -13,30 +13,40 @@ import java.util.List;
  */
 public class ClientServiceImplementation implements ClientService {
 
-    private final ClientRepository clientRepository;
+	private final ClientRepository clientRepository;
 
-    @Autowired
-    public ClientServiceImplementation(ClientRepository clientRepository){
-        this.clientRepository = clientRepository;
-    }
+	@Autowired
+	public ClientServiceImplementation(ClientRepository clientRepository) {
+		this.clientRepository = clientRepository;
+	}
 
-    @Override
-    public Client saveClient(Client client) {
-        return this.clientRepository.save(client);
-    }
+	@Override
+	public Client saveClient(Client client) {
+		return this.clientRepository.save(client);
+	}
 
-    @Override
-    public List<Client> listAllClients() {
-        return this.clientRepository.findAll();
-    }
+	@Override
+	public List<Client> listAllClients() {
+		return this.clientRepository.findAll();
+	}
 
-    @Override
-    public void deleteClient(Long id) {
-        this.clientRepository.delete(id);
-    }
+	@Override
+	public void deleteClient(Long id) {
+		this.clientRepository.delete(id);
+	}
 
-    @Override
-    public Client updateClient(Client client) {
-        return this.clientRepository.save(client);
-    }
+	@Override
+	public Client updateClient(Client client) {
+		return this.clientRepository.save(client);
+	}
+
+	@Override
+	public Client searchClientByName(String name) {
+		return this.clientRepository.findByNameIgnoreCase(name);
+	}
+
+	@Override
+	public Client searchClientByEmail(String email) {
+		return this.clientRepository.findByEmailContainingIgnoreCase(email);
+	}
 }
